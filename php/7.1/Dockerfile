@@ -123,7 +123,7 @@ RUN cd /usr/local/src/php-$PHP_VERSION && \
     make && make install
 
 ENV EXTENSIONS \
-    xdebug-2.4.1 \
+    xdebug-2.5.0RC1 \
     mongodb-1.1.9 \
     #pthreads-3.1.6 \
     redis-3.0.0
