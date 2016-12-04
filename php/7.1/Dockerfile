@@ -165,7 +165,7 @@ RUN sed -i "s/pm.max_spare_servers = 3/pm.max_spare_servers = 10/g" $PHP_CONF_SC
 RUN sed -i "s/;pm.max_requests = 500/pm.max_requests = 500/g" $PHP_CONF_SCAN_DIR/www.conf
 
 # Enable php extension
-RUN echo 'extension_dir = "/usr/local/php7/lib/php/extensions/debug-zts-20151012"' >> $PHP_CONF_DIR/php.ini
+RUN echo 'extension_dir = "/usr/local/php7/lib/php/extensions/debug-zts-20160303"' >> $PHP_CONF_DIR/php.ini
 RUN echo 'extension=redis.so' >> $PHP_CONF_DIR/php.ini
 RUN echo 'extension=mongodb.so' >> $PHP_CONF_DIR/php.ini
 # RUN echo 'extension=pthreads.so' >> $PHP_CONF_DIR/php.ini
