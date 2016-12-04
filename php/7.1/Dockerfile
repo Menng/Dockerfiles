@@ -194,7 +194,7 @@ RUN apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false
 WORKDIR $PHP_BUILD_DIR
 
 # Define default command
-CMD ["service","php7.0-fpm","start"]
+CMD ["service","php7.1-fpm","start"]
 
 # Expose Ports
 EXPOSE 9000
