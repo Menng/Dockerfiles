@@ -122,8 +122,13 @@ RUN cd /usr/local/src/php-$PHP_VERSION \
 RUN cd /usr/local/src/php-$PHP_VERSION && \
     make && make install
 
+ENV EXTENSIONS \
+    xdebug-2.4.1 \
+    mongodb-1.1.9 \
+    #pthreads-3.1.6 \
+    redis-3.0.0
 # Search in https://pecl.php.net/index.php get name
-RUN for key in xdebug-2.4.1 mongodb-1.1.9 pthreads-2.0.10 redis-3.0.0; do \
+RUN for key in $EXTENSIONS; do \
         cd /tmp \
         && wget -O "$key".tgz https://pecl.php.net/get/"$key".tgz \
         && tar zxf "$key".tgz -C /tmp/ \
@@ -163,7 +168,7 @@ RUN sed -i "s/;pm.max_requests = 500/pm.max_requests = 500/g" $PHP_CONF_SCAN_DIR
 RUN echo 'extension_dir = "/usr/local/php7/lib/php/extensions/debug-zts-20151012"' >> $PHP_CONF_DIR/php.ini
 RUN echo 'extension=redis.so' >> $PHP_CONF_DIR/php.ini
 RUN echo 'extension=mongodb.so' >> $PHP_CONF_DIR/php.ini
-RUN echo 'extension=pthreads.so' >> $PHP_CONF_DIR/php.ini
+# RUN echo 'extension=pthreads.so' >> $PHP_CONF_DIR/php.ini
 RUN echo 'zend_extension=opcache.so' >> $PHP_CONF_DIR/php.ini
 
 # Configure opcache
