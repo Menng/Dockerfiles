@@ -123,7 +123,7 @@ RUN cd /usr/local/src/php-$PHP_VERSION && \
     make && make install
 
 # Search in https://pecl.php.net/index.php get name
-RUN for key in xdebug-2.4.1 mongodb-1.1.9 pthreads-2.0.10 redis-3.0.0; do \
+RUN for key in xdebug-2.5.0 mongodb-1.1.9 pthreads-2.0.10 redis-3.0.0; do \
         cd /tmp \
         && wget -O "$key".tgz https://pecl.php.net/get/"$key".tgz \
         && tar zxf "$key".tgz -C /tmp/ \
