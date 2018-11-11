@@ -14,7 +14,8 @@ RUN echo "nameserver 114.114.114.114" >> /etc/resolv.conf
 RUN sed -i -e "s/archive.ubuntu.com/mirrors.aliyun.com/g" /etc/apt/sources.list
 
 # Upgrade System
-RUN apt-get update
+RUN apt-get update -y
+RUN apt-get upgrade -y
 
 # Install Compile Tool
 ENV PHPIZE_DEPS \

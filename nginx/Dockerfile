@@ -13,7 +13,8 @@ RUN sed -i -e "s/httpredir.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.lis
 RUN sed -i -e "s/security.debian.org/mirrors.aliyun.com\/debian-security/g" /etc/apt/sources.list
 
 # Upgrade System
-RUN apt-get update
+RUN apt-get update -y
+RUN apt-get upgrade -y
 
 # Install Nginx.
 RUN apt-get install -y vim nginx --no-install-recommends
