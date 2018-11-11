@@ -1,0 +1,36 @@
+version: '3'
+services:
+
+  db:
+    build: ./mysql
+    image: debian/mysql
+    container_name: mysql
+    expose:
+      - "3306"
+
+  php:
+    build: ./php/7.1
+    image: debian/php
+    container_name: phpfpm
+    volumes:
+      - "./data/www:/usr/share/nginx/html"
+    links:
+      - db:db
+    expose:
+      - "9000"
+
+  web:
+    build: ./nginx
+    image: debian/nginx
+    container_name: nginx
+    expose:
+      - "80"
+      - "443"
+    depends_on:
+      - php
+    links:
+      - php:php
+    ports:
+      - "127.0.0.1:80:80"
+      - "127.0.0.1:443:443"
+
