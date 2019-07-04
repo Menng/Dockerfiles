@@ -1,4 +1,4 @@
-FROM ubuntu:14.04
+FROM debian:jessie
 
 MAINTAINER Menng
 
@@ -11,7 +11,7 @@ RUN echo "nameserver 223.5.5.5" > /etc/resolv.conf
 RUN echo "nameserver 114.114.114.114" >> /etc/resolv.conf
 
 # Replace source list
-RUN sed -i -e "s/archive.ubuntu.com/mirrors.aliyun.com/g" /etc/apt/sources.list
+RUN sed -i -e "s/\(deb\|security\).debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list
 
 # Upgrade System
 RUN apt-get update -y

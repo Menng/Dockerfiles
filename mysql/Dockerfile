@@ -11,8 +11,7 @@ RUN echo "nameserver 223.5.5.5" > /etc/resolv.conf
 RUN echo "nameserver 114.114.114.114" >> /etc/resolv.conf
 
 # Replace source list
-RUN sed -i -e "s/httpredir.debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list
-RUN sed -i -e "s/security.debian.org/mirrors.aliyun.com\/debian-security/g" /etc/apt/sources.list
+RUN sed -i -e "s/\(deb\|security\).debian.org/mirrors.aliyun.com/g" /etc/apt/sources.list
 
 # Upgrade System
 RUN apt-get update -y
