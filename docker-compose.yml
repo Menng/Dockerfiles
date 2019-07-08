@@ -1,0 +1,38 @@
+version: '3'
+services:
+
+  db:
+    build: ./mysql
+    image: mysql:alpine
+    container_name: mysql
+    expose:
+      - 3306
+
+  php:
+    build: ./php/7.3
+    image: php-7.3:alpine
+    container_name: phpfpm
+    volumes:
+      - "./data/www:/srv/www"
+    depends_on:
+      - db
+    links:
+      - db:db
+    expose:
+      - 9000
+
+  web:
+    build: ./nginx
+    image: nginx:alpine
+    container_name: nginx
+    expose:
+      - 80
+      - 443
+    depends_on:
+      - php
+    links:
+      - php:php
+    ports:
+      - "80:80"
+      - "443:443"
+
