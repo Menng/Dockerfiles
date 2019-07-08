@@ -1,0 +1,29 @@
+# This file is a template, and might need editing before it works on your project.
+
+image: tmaier/docker-compose
+
+stages: 
+  - build
+
+services:
+  - docker:dind
+
+variables:
+  # use the overlay storage driver
+  # https://docs.gitlab.com/ce/ci/docker/using_docker_build.html#using-the-overlayfs-driver
+  DOCKER_DRIVER: overlay
+  VERSION: 0.0.1
+
+build:images:
+  stage: build
+  before_script:
+    - cat /etc/os-release
+  script:
+    - docker-compose up -d --build
+    - docker image list
+    - docker ps
+  retry:
+    max: 2
+    when:
+      - runner_system_failure
+      - stuck_or_timeout_failure
